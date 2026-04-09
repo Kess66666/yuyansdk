@@ -1,0 +1,76 @@
+# Rime schema - 万象拼音简化版（无 Lua 依赖）
+# encoding: utf-8
+---
+schema:
+  schema_id: wanxiang_simple
+  name: 万象拼音简
+  version: "1.0"
+  author:
+    - amzxyz
+  description: |
+    万象拼音简化版，移除了 Lua 依赖，适配语燕输入法
+
+switches:
+  - name: ascii_mode
+    states: [中文, 英文]
+  - name: full_shape
+    states: [半角, 全角]
+  - name: simplification
+    states: [漢字, 汉字]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - speller
+    - punctuator
+    - selector
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - echo_translator
+    - script_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
+  algebra:
+    - xform/^ng(\d)$/eng$1/
+    - abbrev/^([a-z]).+$/$1/
+    - abbrev/^([zcs]h).+$/$1/
+    - derive/([nl])ve/$1ue/
+    - derive/^([jqxy])u/$1v/
+    - derive/un$/uen/
+    - derive/ui$/uei/
+    - derive/iu$/iou/
+    - xlit/AEQWRTYUIOPSDFGHMJCKLZXVBN/aeqwrtyuiopsdfghmjcklzxvbn/
+
+translator:
+  dictionary: wanxiang
+  prism: wanxiang
+  enable_completion: true
+  enable_user_dict: true
+
+punctuator:
+  half_shape:
+    ".": "。"
+    ",": "，"
+    ":" : "："
+    ";": "；"
+    "!": "！"
+    "?": "？"
+
+simplifier:
+  option_name: simplification
+
+menu:
+  page_size: 5
