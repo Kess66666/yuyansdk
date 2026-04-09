@@ -66,7 +66,7 @@ traditionalize:
   option_name: traditionalization
 translator:
   always_show_comments: true
-  dictionary: wanxiang
+  dictionary: pinyin
   initial_quality: 1.2
   prism: double_pinyin_abc
   spelling_hints: 100
