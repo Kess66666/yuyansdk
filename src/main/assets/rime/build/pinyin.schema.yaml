@@ -18,11 +18,11 @@ speller:
     - "xform/^([a-z]+)$/$1/"
 
 translator:
-  dictionary: wanxiang
+  dictionary: pinyin
   enable_completion: true
   enable_user_dict: true
 
- punctuator:
+punctuator:
   half_shape:
     ".": "。"
     ",": "，"
