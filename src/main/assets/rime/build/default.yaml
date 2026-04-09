@@ -5,8 +5,9 @@ __build_info:
     default.custom: 1744370670
 config_version: "2025-06-06"
 schema_list:
-  - schema: t9_pinyin
+  - schema: wanxiang
   - schema: pinyin
+  - schema: t9_pinyin
   - schema: double_pinyin_natural
   - schema: double_pinyin_mspy
   - schema: double_pinyin_sogou
