@@ -1,69 +1,68 @@
-__build_info:
-  rime_version: 1.11.2
-  timestamps:
-    default: 1744370669
-    default.custom: 1744370670
-    pinyin.custom: 0
-    pinyin.schema: 1744370670
-cn_en:
-  db_class: stabledb
-  dictionary: ""
-  enable_completion: true
-  enable_sentence: false
-  initial_quality: 0.5
-  user_dict: "en_dicts/cn_en"
-emoji:
-  inherit_comment: false
-  opencc_config: emoji.json
-  option_name: emoji
-engine:
-  filters:
-    - "simplifier@emoji"
-    - "simplifier@traditionalize"
-    - uniquifier
-  processors:
-    - ascii_composer
-    - recognizer
-    - speller
-    - punctuator
-    - selector
-    - express_editor
-  segmentors:
-    - ascii_segmentor
-    - matcher
-    - abc_segmentor
-    - punct_segmentor
-    - fallback_segmentor
-  translators:
-    - punct_translator
-    - echo_translator
-    - script_translator
-    - "table_translator@english"
-    - "table_translator@cn_en"
-english:
-  dictionary: english
-  enable_sentence: false
-  enable_user_dict: false
-  initial_quality: 1.1
-punctuator:
-  symbols:
-    "/": ["@", "＃", "＊", "＋", "……", "〜", "（", "）", "、", "/"]
-recognizer:
-  patterns:
-    punct: "^/([0-9]|10|[A-Za-z]*?)$"
+# Rime schema - 万象拼音极简版（无Lua依赖）
+# encoding: utf-8
+---
 schema:
-  dependencies:
-    - english
-  name: "全键拼音"
   schema_id: pinyin
+  name: 万象拼音
+  version: "1.0"
+  author:
+    - amzxyz
+  description: |
+    万象拼音标准版，仅核心拼音输入，无Lua依赖。
+    适用于语燕输入法等精简Rime引擎。
+
 speller:
-  alphabet: "zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`/"
-  delimiter: "''"
-traditionalize:
-  opencc_config: s2t.json
-  option_name: traditionalization
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
+  algebra:
+    - "xform/^([a-z]+)$/$1/"
+
 translator:
-  always_show_comments: true
-  dictionary: pinyin
-  initial_quality: 1.2
-  spelling_hints: 100
+  dictionary: wanxiang
+  enable_completion: true
+  enable_user_dict: true
+
+ punctuator:
+  half_shape:
+    ".": "。"
+    ",": "，"
+    ":": "："
+    ";": "；"
+    "!": "！"
+    "?": "？"
+    "<": "《"
+    ">": "》"
+    "\"": "“”"
+    "'": "‘’"
+    "[": "【"
+    "]": "】"
+    "(": "（"
+    ")": "）"
+    "{": "「"
+    "}": "」"
+    "-": "－"
+    "_": "——"
+    "@": " @"
+    "#": " #"
+    "$": " ¥"
+    "%": "％"
+    "^": "……"
+    "&": "＆"
+    "*": "＊"
+    "+": "＋"
+    "=": "＝"
+    "\\": "、"
+    "|": "｜"
+    "~": "～"
+
+key_binder:
+  bindings:
+    - {accept: "Shift+space", select: .next, when: always}
+
+switches:
+  - name: ascii_mode
+    states: ["中文", "英文"]
+  - name: full_shape
+    states: ["半角", "全角"]
+  - name: ascii_punct
+    states: ["中标", "英标"]
