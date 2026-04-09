@@ -18,7 +18,7 @@ speller:
     - "xform/^([a-z]+)$/$1/"
 
 translator:
-  dictionary: pinyin
+  dictionary: wanxiang
   enable_completion: true
   enable_user_dict: true
 
