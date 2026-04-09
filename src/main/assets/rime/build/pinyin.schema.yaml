@@ -1,4 +1,4 @@
-# Rime schema - 万象拼音极简版
+# Rime schema - 万象拼音标准版
 # encoding: utf-8
 ---
 schema:
@@ -8,14 +8,56 @@ schema:
   author:
     - amzxyz
   description: |
-    万象拼音标准版，仅核心拼音输入。
+    万象拼音标准版，基于 Rime 拼音引擎
+
+switches:
+  - name: ascii_mode
+    states: [中文, 英文]
+  - name: full_shape
+    states: [半角, 全角]
+  - name: simplification
+    states: [漢字, 汉字]
+  - name: extended_charset
+    states: [常用, 增廣]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - speller
+    - punctuator
+    - selector
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - echo_translator
+    - script_translator
+  filters:
+    - simplifier
+    - uniquifier
 
 speller:
   alphabet: zyxwvutsrqponmlkjihgfedcba
-  delimiter: " '"
+  delimiter: "'"
+  algebra:
+    - abbrev/^([a-z]).+$/$1/
+    - abbrev/^([zcs]h).+$/$1/
+    - derive/^([nl])ve$/$1ue/
+    - derive/^([jqxy])u/$1v/
+    - derive/un$/uen/
+    - derive/ui$/uei/
+    - derive/iu$/iou/
+    - erase/^.*[bpmf]$/
 
 translator:
   dictionary: pinyin
+  prism: pinyin
   enable_completion: true
   enable_user_dict: true
 
@@ -23,9 +65,13 @@ punctuator:
   half_shape:
     ".": "。"
     ",": "，"
+    ":": "："
+    ";": "；"
+    "!": "！"
+    "?": "？"
 
-switches:
-  - name: ascii_mode
-    states: ["中文", "英文"]
-  - name: full_shape
-    states: ["半角", "全角"]
+simplifier:
+  option_name: simplification
+
+menu:
+  page_size: 5
