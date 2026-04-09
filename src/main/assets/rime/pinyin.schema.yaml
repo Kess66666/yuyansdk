@@ -1,0 +1,68 @@
+# Rime schema - 万象拼音极简版（无Lua依赖）
+# encoding: utf-8
+---
+schema:
+  schema_id: pinyin
+  name: 万象拼音
+  version: "1.0"
+  author:
+    - amzxyz
+  description: |
+    万象拼音标准版，仅核心拼音输入，无Lua依赖。
+    适用于语燕输入法等精简Rime引擎。
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " '"
+  algebra:
+    - "xform/^([a-z]+)$/$1/"
+
+translator:
+  dictionary: pinyin
+  enable_completion: true
+  enable_user_dict: true
+
+ punctuator:
+  half_shape:
+    ".": "。"
+    ",": "，"
+    ":": "："
+    ";": "；"
+    "!": "！"
+    "?": "？"
+    "<": "《"
+    ">": "》"
+    "\"": "“”"
+    "'": "‘’"
+    "[": "【"
+    "]": "】"
+    "(": "（"
+    ")": "）"
+    "{": "「"
+    "}": "」"
+    "-": "－"
+    "_": "——"
+    "@": " @"
+    "#": " #"
+    "$": " ¥"
+    "%": "％"
+    "^": "……"
+    "&": "＆"
+    "*": "＊"
+    "+": "＋"
+    "=": "＝"
+    "\\": "、"
+    "|": "｜"
+    "~": "～"
+
+key_binder:
+  bindings:
+    - {accept: "Shift+space", select: .next, when: always}
+
+switches:
+  - name: ascii_mode
+    states: ["中文", "英文"]
+  - name: full_shape
+    states: ["半角", "全角"]
+  - name: ascii_punct
+    states: ["中标", "英标"]
