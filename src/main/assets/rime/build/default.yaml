@@ -5,6 +5,7 @@ __build_info:
     default.custom: 1744370670
 config_version: "2025-06-06"
 schema_list:
+  - schema: wanxiang_simple
   - schema: wanxiang
   - schema: pinyin
   - schema: t9_pinyin
