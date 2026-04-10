@@ -49,6 +49,10 @@ class AppPrefs(private val sharedPreferences: SharedPreferences) {
         val vibrationAmplitude = int("key_press_sound_volume", 0)     //触感强度
 
         val privacyPolicySure = bool("privacy_policy_sure", false) //是否同意隐私政策
+        
+        // 存储权限相关
+        val storagePermissionGranted = bool("storage_permission_granted", false) //是否已授予存储权限
+        val storageSkipChosen = bool("storage_skip_chosen", false) //用户是否选择跳过存储权限
     }
 
     inner class Input : ManagedPreferenceCategory(R.string.setting_ime_input, sharedPreferences) {
