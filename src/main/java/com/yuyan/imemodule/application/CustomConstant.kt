@@ -1,6 +1,5 @@
 package com.yuyan.imemodule.application
 
-import android.os.Environment
 import com.yuyan.imemodule.data.flower.FlowerTypefaceMode
 
 /**
@@ -8,8 +7,8 @@ import com.yuyan.imemodule.data.flower.FlowerTypefaceMode
  */
 object CustomConstant {
     // 改为外部存储路径，支持用户直接管理词库
-    // 路径: /storage/emulated/0/Rime
-    var RIME_DICT_PATH = Environment.getExternalStorageDirectory().absolutePath + "/Rime"
+    // 路径: /sdcard/Rime (大多数Android设备兼容)
+    var RIME_DICT_PATH = "/sdcard/Rime"
     var HW_DICT_PATH: String  = Launcher.instance.context.getExternalFilesDir("hw").toString()
     const val SCHEMA_ZH_T9 = "t9_pinyin" // 拼音九键
     const val SCHEMA_ZH_QWERTY = "pinyin" // 拼音全键
