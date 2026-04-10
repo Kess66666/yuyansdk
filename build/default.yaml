@@ -1,0 +1,5 @@
+__build_info:
+  rime_version: 1.8.5
+
+schema_list:
+  - schema: pinyin
