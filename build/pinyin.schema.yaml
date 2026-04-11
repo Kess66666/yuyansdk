@@ -103,4 +103,4 @@ switches:
     states: ["繁体", "简体"]
   - options: [emoji_off, emoji_suggestion]
     name: emoji_suggestion
-    states: ["😃 关", "😃 开"]
+    states: ["😊 关", "😊 开"]
